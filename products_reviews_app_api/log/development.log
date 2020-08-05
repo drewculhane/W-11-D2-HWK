@@ -137,3 +137,49 @@ Processing by ReviewsController#index as HTML
 Completed 200 OK in 3ms (Views: 1.8ms | ActiveRecord: 0.4ms | Allocations: 1301)
 
 
+Started PUT "/reviews/3" for ::1 at 2020-08-04 22:48:24 -0400
+Processing by ReviewsController#update as */*
+  Parameters: {"review"=>{"title"=>"Terrible. Throw it in a volcano. "}, "id"=>"3"}
+  [1m[36mReview Load (0.5ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/reviews_controller.rb:40:in `set_review'
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/reviews_controller.rb:25:in `update'
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/reviews_controller.rb:25:in `update'
+  [1m[36mReview Update (0.5ms)[0m  [1m[33mUPDATE "reviews" SET "title" = $1, "updated_at" = $2 WHERE "reviews"."id" = $3[0m  [["title", "Terrible. Throw it in a volcano. "], ["updated_at", "2020-08-05 02:48:24.547257"], ["id", 3]]
+  ↳ app/controllers/reviews_controller.rb:25:in `update'
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/reviews_controller.rb:25:in `update'
+Completed 200 OK in 28ms (Views: 0.3ms | ActiveRecord: 3.0ms | Allocations: 12491)
+
+
+Started GET "/products/1/reviews" for ::1 at 2020-08-04 22:48:31 -0400
+Processing by ReviewsController#index as HTML
+  Parameters: {"product_id"=>"1"}
+  [1m[36mReview Load (0.3ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."product_id" = $1[0m  [["product_id", 1]]
+  ↳ app/controllers/reviews_controller.rb:8:in `index'
+Completed 200 OK in 3ms (Views: 1.9ms | ActiveRecord: 0.3ms | Allocations: 1301)
+
+
+Started DELETE "/reviews/3" for ::1 at 2020-08-04 22:48:43 -0400
+Processing by ReviewsController#destroy as */*
+  Parameters: {"id"=>"3"}
+  [1m[36mReview Load (0.3ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/reviews_controller.rb:40:in `set_review'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/reviews_controller.rb:34:in `destroy'
+  [1m[36mReview Destroy (0.4ms)[0m  [1m[31mDELETE FROM "reviews" WHERE "reviews"."id" = $1[0m  [["id", 3]]
+  ↳ app/controllers/reviews_controller.rb:34:in `destroy'
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/reviews_controller.rb:34:in `destroy'
+Completed 204 No Content in 13ms (ActiveRecord: 1.1ms | Allocations: 2429)
+
+
+Started GET "/products/1/reviews" for ::1 at 2020-08-04 22:48:46 -0400
+Processing by ReviewsController#index as HTML
+  Parameters: {"product_id"=>"1"}
+  [1m[36mReview Load (0.3ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."product_id" = $1[0m  [["product_id", 1]]
+  ↳ app/controllers/reviews_controller.rb:8:in `index'
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.3ms | Allocations: 1149)
+
+
