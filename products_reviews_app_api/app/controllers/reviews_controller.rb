@@ -1,16 +1,11 @@
 class ReviewsController < ApplicationController
-  before_action :set_review, only: [:show, :update, :destroy]
+  before_action :set_review, only: [:update, :destroy]
 
   # GET /reviews
   def index
-    @reviews = Review.all
+    reviews = Review.where(product_id: params[:product_id])
 
-    render json: @reviews
-  end
-
-  # GET /reviews/1
-  def show
-    render json: @review
+    render json: reviews 
   end
 
   # POST /reviews

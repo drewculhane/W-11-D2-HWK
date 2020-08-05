@@ -81,3 +81,26 @@ Migrating to AddProductIdToReviews (20200805015121)
   [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
   [1m[36mReview Create (0.3ms)[0m  [1m[32mINSERT INTO "reviews" ("title", "author", "created_at", "updated_at", "product_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "middling product I'd say"], ["author", "Chingy Right Thurr"], ["created_at", "2020-08-05 01:59:15.376741"], ["updated_at", "2020-08-05 01:59:15.376741"], ["product_id", 1]]
   [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/" for ::1 at 2020-08-04 22:19:31 -0400
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/andrewculhane/.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/gems/railties-6.0.3.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/andrewculhane/.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/gems/railties-6.0.3.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 7.4ms | Allocations: 409)
+Completed 200 OK in 16ms (Views: 12.6ms | ActiveRecord: 0.0ms | Allocations: 2255)
+
+
+Started GET "/products" for ::1 at 2020-08-04 22:19:39 -0400
+Processing by ProductsController#index as HTML
+  [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/controllers/products_controller.rb:7:in `index'
+Completed 200 OK in 26ms (Views: 14.6ms | ActiveRecord: 7.2ms | Allocations: 6945)
+
+
+Started GET "/products/1/reviews" for ::1 at 2020-08-04 22:19:56 -0400
+Processing by ReviewsController#index as HTML
+  Parameters: {"product_id"=>"1"}
+  [1m[36mReview Load (1.8ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."product_id" = $1[0m  [["product_id", 1]]
+  ↳ app/controllers/reviews_controller.rb:8:in `index'
+Completed 200 OK in 19ms (Views: 9.3ms | ActiveRecord: 6.6ms | Allocations: 5907)
+
+
